@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - OPTIMA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        * {
+            font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+        }
+
+        body {
+            background: url("testbg.png") center/cover no-repeat;
+        }
+    </style>
+</head>
+
+<body class="m-0 p-0 text-white w-full overflow-x-hidden">
+
+    <div id="sidebar-container"></div>
+    <script src="sidebar.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadSidebar('projects');
+        });   
+    </script>
+
+    <!--Projects-->
+    <div id="projects-page"
+        class="bg-cover bg-center min-h-screen flex flex-col justify-start p-[100px_50px] pt-[150px] max-md:p-[60px_30px] max-md:pt-[280px] max-sm:p-[40px_20px] max-sm:pt-[300px]">
+        <h1 id="admin" class="text-[48px] mt-0 mb-[30px] text-center max-md:text-4xl max-sm:text-[28px]">Projects</h1>
+
+        <div
+            class="flex justify-between items-center mb-5 px-5 max-md:flex-col max-md:gap-[15px] max-md:text-center max-md:px-[10px]">
+            <h3 class="text-white text-2xl m-0 max-md:text-xl max-sm:text-lg">Global list of all Projects</h3>
+        </div>
+
+        <div class="overflow-x-auto mx-[10px] rounded-lg max-md:mx-0 max-md:rounded-none">
+            <table id="projectsTable" class="w-full border-collapse min-w-[600px]">
+                <thead class="bg-[#34495e] text-white">
+                    <tr>
+                        <th
+                            class="p-[15px] text-left font-semibold text-sm uppercase max-md:p-[12px_10px] max-sm:p-[10px_8px] max-sm:text-[11px]">
+                            ID</th>
+                        <th
+                            class="p-[15px] text-left font-semibold text-sm uppercase max-md:p-[12px_10px] max-sm:p-[10px_8px] max-sm:text-[11px]">
+                            Project Name</th>
+                        <th
+                            class="p-[15px] text-left font-semibold text-sm uppercase max-md:p-[12px_10px] max-sm:p-[10px_8px] max-sm:text-[11px]">
+                            Status</th>
+                        <th
+                            class="p-[15px] text-left font-semibold text-sm uppercase max-md:p-[12px_10px] max-sm:p-[10px_8px] max-sm:text-[11px]">
+                            Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!--Sample Data-->
+                    <tr data-id="1" class="bg-white transition-colors duration-200 hover:bg-[#f8f9fa]">
+                        <td
+                            class="p-[15px] border-b border-[#ecf0f1] text-sm text-[#2c3e50] max-md:p-[12px_10px] max-sm:p-[10px_8px] max-sm:text-xs">
+                            1</td>
+                        <td
+                            class="p-[15px] border-b border-[#ecf0f1] text-sm text-[#2c3e50] max-md:p-[12px_10px] max-sm:p-[10px_8px] max-sm:text-xs">
+                            Website Redesign</td>
+                        <td
+                            class="p-[15px] border-b border-[#ecf0f1] text-sm text-[#2c3e50] max-md:p-[12px_10px] max-sm:p-[10px_8px] max-sm:text-xs">
+                            <span
+                                class="inline-block py-[5px] px-3 rounded-[20px] text-xs font-semibold uppercase bg-[#d4edda] text-[#155724]">Active</span>
+                        </td>
+                        <td
+                            class="p-[15px] border-b border-[#ecf0f1] text-sm text-[#2c3e50] max-md:p-[12px_10px] max-sm:p-[10px_8px] max-sm:text-xs">
+                            <div class="flex gap-2 max-md:gap-[6px] max-sm:gap-1">
+                                <button
+                                    class="py-2 px-[15px] border-none rounded cursor-pointer text-[13px] transition-all duration-300 font-medium bg-[#3498db] text-white hover:bg-[#2980b9] max-md:py-2 max-md:px-3 max-md:text-xs max-sm:py-[6px] max-sm:px-[10px] max-sm:text-[11px] whitespace-nowrap"
+                                    onclick="viewProjectDetails(1)">View Project Details</button>
+                                <button
+                                    class="py-2 px-[15px] border-none rounded cursor-pointer text-[13px] transition-all duration-300 font-medium bg-[#e74c3c] text-white hover:bg-[#c0392b] max-md:py-2 max-md:px-3 max-md:text-xs max-sm:py-[6px] max-sm:px-[10px] max-sm:text-[11px] whitespace-nowrap"
+                                    onclick="forceDeleteProject(1)">Force Delete Project</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr data-id="2" class="bg-white transition-colors duration-200 hover:bg-[#f8f9fa]">
+                        <td
+                            class="p-[15px] border-b border-[#ecf0f1] text-sm text-[#2c3e50] max-md:p-[12px_10px] max-sm:p-[10px_8px] max-sm:text-xs">
+                            2</td>
+                        <td
+                            class="p-[15px] border-b border-[#ecf0f1] text-sm text-[#2c3e50] max-md:p-[12px_10px] max-sm:p-[10px_8px] max-sm:text-xs">
+                            Mobile App Development</td>
+                        <td
+                            class="p-[15px] border-b border-[#ecf0f1] text-sm text-[#2c3e50] max-md:p-[12px_10px] max-sm:p-[10px_8px] max-sm:text-xs">
+                            <span
+                                class="inline-block py-[5px] px-3 rounded-[20px] text-xs font-semibold uppercase bg-[#d4edda] text-[#155724]">In
+                                Progress</span>
+                        </td>
+                        <td
+                            class="p-[15px] border-b border-[#ecf0f1] text-sm text-[#2c3e50] max-md:p-[12px_10px] max-sm:p-[10px_8px] max-sm:text-xs">
+                            <div class="flex gap-2 max-md:gap-[6px] max-sm:gap-1">
+                                <button
+                                    class="py-2 px-[15px] border-none rounded cursor-pointer text-[13px] transition-all duration-300 font-medium bg-[#3498db] text-white hover:bg-[#2980b9] max-md:py-2 max-md:px-3 max-md:text-xs max-sm:py-[6px] max-sm:px-[10px] max-sm:text-[11px] whitespace-nowrap"
+                                    onclick="viewProjectDetails(2)">View Project Details</button>
+                                <button
+                                    class="py-2 px-[15px] border-none rounded cursor-pointer text-[13px] transition-all duration-300 font-medium bg-[#e74c3c] text-white hover:bg-[#c0392b] max-md:py-2 max-md:px-3 max-md:text-xs max-sm:py-[6px] max-sm:px-[10px] max-sm:text-[11px] whitespace-nowrap"
+                                    onclick="forceDeleteProject(2)">Force Delete Project</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr data-id="3" class="bg-white transition-colors duration-200 hover:bg-[#f8f9fa]">
+                        <td
+                            class="p-[15px] border-b border-[#ecf0f1] text-sm text-[#2c3e50] max-md:p-[12px_10px] max-sm:p-[10px_8px] max-sm:text-xs">
+                            3</td>
+                        <td
+                            class="p-[15px] border-b border-[#ecf0f1] text-sm text-[#2c3e50] max-md:p-[12px_10px] max-sm:p-[10px_8px] max-sm:text-xs">
+                            Legacy System Migration</td>
+                        <td
+                            class="p-[15px] border-b border-[#ecf0f1] text-sm text-[#2c3e50] max-md:p-[12px_10px] max-sm:p-[10px_8px] max-sm:text-xs">
+                            <span
+                                class="inline-block py-[5px] px-3 rounded-[20px] text-xs font-semibold uppercase bg-[#f8d7da] text-[#721c24]">On
+                                Hold</span>
+                        </td>
+                        <td
+                            class="p-[15px] border-b border-[#ecf0f1] text-sm text-[#2c3e50] max-md:p-[12px_10px] max-sm:p-[10px_8px] max-sm:text-xs">
+                            <div class="flex gap-2 max-md:gap-[6px] max-sm:gap-1">
+                                <button
+                                    class="py-2 px-[15px] border-none rounded cursor-pointer text-[13px] transition-all duration-300 font-medium bg-[#3498db] text-white hover:bg-[#2980b9] max-md:py-2 max-md:px-3 max-md:text-xs max-sm:py-[6px] max-sm:px-[10px] max-sm:text-[11px] whitespace-nowrap"
+                                    onclick="viewProjectDetails(3)">View Project Details</button>
+                                <button
+                                    class="py-2 px-[15px] border-none rounded cursor-pointer text-[13px] transition-all duration-300 font-medium bg-[#e74c3c] text-white hover:bg-[#c0392b] max-md:py-2 max-md:px-3 max-md:text-xs max-sm:py-[6px] max-sm:px-[10px] max-sm:text-[11px] whitespace-nowrap"
+                                    onclick="forceDeleteProject(3)">Force Delete Project</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr data-id="4" class="bg-white transition-colors duration-200 hover:bg-[#f8f9fa]">
+                        <td
+                            class="p-[15px] border-b border-[#ecf0f1] text-sm text-[#2c3e50] max-md:p-[12px_10px] max-sm:p-[10px_8px] max-sm:text-xs">
+                            4</td>
+                        <td
+                            class="p-[15px] border-b border-[#ecf0f1] text-sm text-[#2c3e50] max-md:p-[12px_10px] max-sm:p-[10px_8px] max-sm:text-xs">
+                            Data Analytics Platform</td>
+                        <td
+                            class="p-[15px] border-b border-[#ecf0f1] text-sm text-[#2c3e50] max-md:p-[12px_10px] max-sm:p-[10px_8px] max-sm:text-xs">
+                            <span
+                                class="inline-block py-[5px] px-3 rounded-[20px] text-xs font-semibold uppercase bg-[#f8d7da] text-[#721c24]">On
+                                Hold</span>
+                        </td>
+                        <td
+                            class="p-[15px] border-b border-[#ecf0f1] text-sm text-[#2c3e50] max-md:p-[12px_10px] max-sm:p-[10px_8px] max-sm:text-xs">
+                            <div class="flex gap-2 max-md:gap-[6px] max-sm:gap-1">
+                                <button
+                                    class="py-2 px-[15px] border-none rounded cursor-pointer text-[13px] transition-all duration-300 font-medium bg-[#3498db] text-white hover:bg-[#2980b9] max-md:py-2 max-md:px-3 max-md:text-xs max-sm:py-[6px] max-sm:px-[10px] max-sm:text-[11px] whitespace-nowrap"
+                                    onclick="viewProjectDetails(4)">View Project Details</button>
+                                <button
+                                    class="py-2 px-[15px] border-none rounded cursor-pointer text-[13px] transition-all duration-300 font-medium bg-[#e74c3c] text-white hover:bg-[#c0392b] max-md:py-2 max-md:px-3 max-md:text-xs max-sm:py-[6px] max-sm:px-[10px] max-sm:text-[11px] whitespace-nowrap"
+                                    onclick="forceDeleteProject(4)">Force Delete Project</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function viewProjectDetails(id) {
+            alert('View details for project ID: ' + id);
+        }
+
+        function forceDeleteProject(id) {
+            const row = document.querySelector(`tr[data-id="${id}"]`);
+            if (confirm('WARNING: Are you sure you want to FORCE DELETE this project? This action cannot be undone.')) {
+                if (row) {
+                    row.remove();
+                }
+            }
+        }
+    </script>
+
+</body>
+
+</html>

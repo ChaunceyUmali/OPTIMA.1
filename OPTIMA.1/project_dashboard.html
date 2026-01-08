@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - OPTIMA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        * {
+            font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+        }
+
+        body {
+            background: url("testbg.png") center/cover no-repeat;
+        }
+
+        @keyframes progress {
+            0% {
+                stroke-dasharray: 0 100;
+            }
+        }
+
+        .circle {
+            animation: progress 1s ease-out forwards;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-animate {
+            animation: slideDown 0.3s ease-out;
+        }
+    </style>
+</head>
+
+<body class="m-0 p-0 text-white w-full overflow-x-hidden">
+
+    <div id="sidebar-container"></div>
+    <script src="sidebar.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            loadSidebar('dashboard', 'project-manager');
+        });   
+    </script>
+
+    <!--Project Dashboard-->
+    <div id="dashboard-page"
+        class="bg-cover bg-center min-h-screen flex flex-col justify-start p-[100px_50px] pt-[150px] max-md:p-[60px_30px] max-md:pt-[280px] max-sm:p-[40px_20px] max-sm:pt-[300px]">
+        <h1 id="admin" class="text-[48px] mt-0 mb-10 text-center max-md:text-4xl max-sm:text-[28px]">Project Dashboard
+        </h1>
+
+        <div
+            class="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-[30px] p-[0_50px] max-w-[1400px] mx-auto my-0 max-md:grid-cols-1 max-md:p-[0_20px] max-md:gap-5">
+            <!-- My Projects Section -->
+            <div
+                class="bg-white rounded-[15px] p-[25px] shadow-[0_4px_15px_rgba(0,0,0,0.1)] text-[#333] max-sm:p-[15px]">
+                <div class="flex justify-between items-center mb-5">
+                    <h3 class="text-lg text-[#2c3e50] m-0">My Projects</h3>
+                    <a href="task_monitoring.html" class="text-[#1abc9c] text-sm no-underline hover:underline">View
+                        All</a>
+                </div>
+                <div class="flex flex-col gap-[15px]">
+                    <div class="p-[15px] bg-[#f8f9fa] rounded-lg border-l-4 border-[#1abc9c]">
+                        <h4 class="m-[0_0_5px_0] text-[#2c3e50]">Website Redesign</h4>
+                        <p class="m-0 text-[13px] text-[#666]">Due: Jan 20, 2026</p>
+                    </div>
+                    <div class="p-[15px] bg-[#f8f9fa] rounded-lg border-l-4 border-[#f1c40f]">
+                        <h4 class="m-[0_0_5px_0] text-[#2c3e50]">Mobile App Dev</h4>
+                        <p class="m-0 text-[13px] text-[#666]">Due: Feb 15, 2026</p>
+                    </div>
+                </div>
+                <div class="mt-5 text-center">
+                    <button
+                        class="inline-block no-underline w-auto bg-[#27ae60] text-white border-none py-[10px] px-5 rounded-[5px] cursor-pointer text-sm transition-colors duration-300 hover:bg-[#229954]"
+                        onclick="openCreateTaskModal()">
+                        <i class="bi bi-plus-circle"></i> Create Task
+                    </button>
+                </div>
+            </div>
+
+            <!-- Team Performance Section -->
+            <div
+                class="bg-white rounded-[15px] p-[25px] shadow-[0_4px_15px_rgba(0,0,0,0.1)] text-[#333] max-sm:p-[15px]">
+                <div class="flex justify-between items-center mb-5">
+                    <h3 class="text-lg text-[#2c3e50] m-0">Team Performance</h3>
+                </div>
+                <div class="flex justify-around items-center flex-wrap gap-5 max-sm:gap-[10px]">
+                    <div class="text-center">
+                        <svg viewBox="0 0 36 36" class="block mx-auto my-0 max-w-[80%] max-h-[250px] max-sm:max-w-full"
+                            style="stroke: #1abc9c;">
+                            <path class="fill-none stroke-[#eee] stroke-[3.8]"
+                                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            <path class="circle fill-none stroke-[2.8] rounded-[round]" stroke-dasharray="85, 100"
+                                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            <text x="18" y="21" class="fill-[#666] font-sans font-bold text-[0.5em]"
+                                text-anchor="middle" dominant-baseline="middle">85%</text>
+                        </svg>
+                        <p class="mt-[10px] text-sm text-[#666]">Task Completion</p>
+                    </div>
+                    <div class="text-center">
+                        <svg viewBox="0 0 36 36" class="block mx-auto my-0 max-w-[80%] max-h-[250px] max-sm:max-w-full"
+                            style="stroke: #3498db;">
+                            <path class="fill-none stroke-[#eee] stroke-[3.8]"
+                                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            <path class="circle fill-none stroke-[2.8] rounded-[round]" stroke-dasharray="92, 100"
+                                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            <text x="18" y="21" class="fill-[#666] font-sans font-bold text-[0.5em]"
+                                text-anchor="middle" dominant-baseline="middle">92%</text>
+                        </svg>
+                        <p class="mt-[10px] text-sm text-[#666]">On Time</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Task Modal (Create/Edit) -->
+    <div id="taskModal"
+        class="hidden fixed z-[2000] left-0 top-0 w-full h-full overflow-auto bg-[rgba(0,0,0,0.6)] backdrop-blur-[5px]">
+        <div
+            class="modal-animate bg-white my-[3%] mx-auto p-0 rounded-2xl w-[90%] max-w-[800px] shadow-[0_10px_40px_rgba(0,0,0,0.5)] max-md:w-[95%] max-sm:w-[96%]">
+            <div
+                class="bg-gradient-to-br from-[#1abc9c] to-[#16a085] text-white p-[20px_25px] rounded-t-2xl flex justify-between items-center max-sm:p-[15px_18px]">
+                <h2 id="modalTitle" class="m-0 text-2xl font-semibold max-md:text-xl max-sm:text-lg">Create New Task
+                </h2>
+                <span
+                    class="text-white text-[32px] font-bold cursor-pointer transition-all duration-300 leading-none flex items-center justify-center w-8 h-8 hover:text-[#f1f1f1] hover:rotate-90 max-sm:text-[28px]"
+                    onclick="closeTaskModal()">&times;</span>
+            </div>
+            <div id="taskForm" class="p-[30px_25px] max-md:p-[20px_15px] max-sm:p-[18px_15px]">
+                <div class="mb-7 text-center text-[#333]">
+                    <p class="text-[#666] text-base" id="modalDescription">Fill in the details below to assign a new
+                        task.</p>
+                </div>
+
+                <div class="mb-5">
+                    <label for="taskTitle" class="block mb-2 text-[#333] font-medium text-sm">Task Title</label>
+                    <input type="text" id="taskTitle" name="taskTitle" required
+                        class="w-full py-3 px-4 border-2 border-[#e2e8f0] rounded-md text-[15px] text-[#333] bg-white focus:outline-none focus:border-[#1abc9c] focus:shadow-[0_0_0_3px_rgba(26,188,156,0.1)]">
+                </div>
+
+                <div class="mb-5">
+                    <label for="taskDesc" class="block mb-2 text-[#333] font-medium text-sm">Description</label>
+                    <textarea id="taskDesc" name="taskDesc" required
+                        class="w-full py-3 px-4 border-2 border-[#e2e8f0] rounded-md text-[15px] resize-y min-h-[100px] text-[#333] font-[inherit] bg-white focus:outline-none focus:border-[#1abc9c]"></textarea>
+                </div>
+
+                <div class="grid grid-cols-2 gap-5 md:grid-cols-1 md:gap-4">
+                    <div class="mb-5">
+                        <label for="dueDate" class="block mb-2 text-[#333] font-medium text-sm">Due Date</label>
+                        <input type="date" id="dueDate" name="dueDate" required
+                            class="w-full py-3 px-4 border-2 border-[#e2e8f0] rounded-md text-[15px] text-[#333] bg-white focus:outline-none focus:border-[#1abc9c] focus:shadow-[0_0_0_3px_rgba(26,188,156,0.1)]">
+                    </div>
+                    <div class="mb-5">
+                        <label for="assignMember" class="block mb-2 text-[#333] font-medium text-sm">Assign
+                            Member</label>
+                        <select id="assignMember" name="assignMember" required
+                            class="w-full py-3 px-4 border-2 border-[#e2e8f0] rounded-md text-[15px] text-[#333] bg-white focus:outline-none focus:border-[#1abc9c] focus:shadow-[0_0_0_3px_rgba(26,188,156,0.1)]">
+                            <option value="">Select Member...</option>
+                            <option value="John Doe">John Doe</option>
+                            <option value="Jane Smith">Jane Smith</option>
+                            <option value="Mike Ross">Mike Ross</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-5">
+                    <label for="taskStatus" class="block mb-2 text-[#333] font-medium text-sm">Status</label>
+                    <select id="taskStatus" name="taskStatus" required
+                        class="w-full py-3 px-4 border-2 border-[#e2e8f0] rounded-md text-[15px] text-[#333] bg-white focus:outline-none focus:border-[#1abc9c] focus:shadow-[0_0_0_3px_rgba(26,188,156,0.1)]">
+                        <option value="Pending">Pending</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Completed">Completed</option>
+                    </select>
+                </div>
+
+                <div class="mt-7 flex justify-end gap-4 md:flex-col md:gap-2.5 sm:flex-col sm:gap-2.5">
+                    <button type="button" onclick="closeTaskModal()"
+                        class="bg-[#475569] text-white py-3 px-7 border-0 rounded-md cursor-pointer text-[15px] font-semibold transition-all duration-300 hover:bg-[#64748b] hover:-translate-y-0.5 md:w-full md:py-3 md:px-5 sm:w-full sm:py-3 sm:px-5">
+                        Cancel
+                    </button>
+                    <button type="button" onclick="saveTask()"
+                        class="bg-gradient-to-br from-[#1abc9c] to-[#16a085] text-white py-3 px-7 border-0 rounded-md cursor-pointer text-[15px] font-semibold transition-all duration-300 hover:bg-gradient-to-br hover:from-[#16a085] hover:to-[#1abc9c] hover:-translate-y-0.5 hover:shadow-[0_5px_15px_rgba(26,188,156,0.3)] md:w-full md:py-3 md:px-5 sm:w-full sm:py-3 sm:px-5">
+                        <span id="saveButtonText">Save Task</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openCreateTaskModal() {
+            document.getElementById('modalTitle').textContent = 'Create New Task';
+            document.getElementById('modalDescription').textContent = 'Fill in the details below to assign a new task.';
+            document.getElementById('saveButtonText').textContent = 'Save Task';
+            document.getElementById('taskTitle').value = '';
+            document.getElementById('taskDesc').value = '';
+            document.getElementById('dueDate').value = '';
+            document.getElementById('assignMember').value = '';
+            document.getElementById('taskStatus').value = 'Pending';
+            document.getElementById('taskModal').style.display = 'block';
+        }
+
+        function closeTaskModal() {
+            document.getElementById('taskModal').style.display = 'none';
+        }
+
+        function saveTask() {
+            const title = document.getElementById('taskTitle').value;
+            const description = document.getElementById('taskDesc').value;
+            const dueDate = document.getElementById('dueDate').value;
+            const assignedTo = document.getElementById('assignMember').value;
+            const status = document.getElementById('taskStatus').value;
+
+            if (!title || !description || !dueDate || !assignedTo) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            // Show success message
+            alert('Task created successfully! Redirecting to task monitoring...');
+
+
+            window.location.href = 'task_monitoring.html';
+        }
+
+        window.onclick = function (event) {
+            const modal = document.getElementById('taskModal');
+            if (event.target === modal) closeTaskModal();
+        }
+    </script>
+
+</body>
+
+</html>
