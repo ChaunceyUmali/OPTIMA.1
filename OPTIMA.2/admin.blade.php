@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - {{ config('app.name', 'OPTIMA') }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        * {
+            font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+        }
+
+        body {
+            background: url("{{ asset('backgrounds/testbg.png') }}") center/cover no-repeat;
+        }
+    </style>
+</head>
+
+<body class="m-0 p-0 text-white w-full overflow-x-hidden">
+
+    {{-- Sidebar Component --}}
+    @include('partials.sidebar')
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            @if(function_exists('loadSidebar'))
+                loadSidebar('home');
+            @endif
+        });
+    </script>
+
+    {{-- Home --}}
+    <div id="homepage"
+        class="bg-cover bg-center min-h-screen flex flex-col justify-center p-[100px_50px] max-md:p-[60px_30px] max-md:pt-[280px] max-sm:p-[40px_20px] max-sm:pt-[300px] min-[1200px]:p-[120px_80px] min-[1600px]:p-[150px_100px]">
+        <h1 id="admin"
+            class="text-[54px] -mt-[200px] text-center mb-5 max-md:mt-0 max-md:text-4xl max-sm:text-[28px] max-sm:leading-tight min-[1200px]:text-[56px] min-[1600px]:text-[64px]">
+            Welcome! {{ Auth::user()->name ?? 'Admin' }}</h1>
+    </div>
+
+</body>
+
+</html>
